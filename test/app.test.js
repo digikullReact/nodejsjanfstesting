@@ -1,14 +1,28 @@
-const sum = require('../app');
+const app=require("../app");
+const request = require('supertest');
 
-test('adds 1 + 2 to equal 3', () => {
-  expect(sum(1, 2)).toBe(3);
-});
 
-test('adds 1 + 2 to equal 3', () => {
-    expect(sum(10, 2)).toBe(12);
+
+
+describe('Testing Get Api',function(){
+
+
+    // This is used for asynchronous testing 
+    it("It should return the response 200", (done) => {
+      request(app).
+          get("/api")
+          
+          .expect(200) //jest 
+          .expect('Content-Type', /json/)
+          .then(response => {
+            expect(response.body.message).toBe( 'Success')
+            expect(response.body.data).toEqual(expect.any(Array))
+            done();
+            
+        }) .catch(err => done(err))
+          
+  
   });
-
-
-  test('adds 1 + 2 to equal 3', () => {
-    expect(sum(100, 28)).toBe(12);
-  });
+  
+  
+  })

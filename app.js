@@ -1,27 +1,22 @@
-function sum(a, b) {
-    return a + b;
-  }
+const express=require("express");
+const app=express();
+
+app.use(express.json());
+
+app.get("/api",(req,res)=>{
+    // Mongodb query 
+
+    res.status(200).json({message:"Success","data":[]})
+})
+
+app.post("/api",(req,res)=>{
+
+    console.log(req.body);
+    const data=[{name:"John"}]
+
+    res.status(200).json({message:"Success",data})
+})
 
 
-  function loweCaseString(str){
 
-    return str.toLowerCase();
-
-  }
-
-  function upperCaseString(str){
-
-    return str.toUpperCase();
-
-  }
-
-  function testInArray(arra){
-
-    return arra.map(ele=>ele.toLowerCase());
-
-  }
-
-  /// expect(new Set(shoppingList)).toContain('milk');
-
-  //console.log(sum(2,3));
-  module.exports = sum
+module.exports=app;
